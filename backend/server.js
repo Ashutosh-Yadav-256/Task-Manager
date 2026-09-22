@@ -20,9 +20,15 @@ if (uri && process.env.NODE_ENV !== 'test') {
 
 const tasksRouter = require('./routes/tasks');
 const usersRouter = require('./routes/users');
+const { memoryRouter } = require('./inMemoryStore');
 
-app.use('/tasks', tasksRouter);
-app.use('/users', usersRouter);
+if (!uri && process.env.NODE_ENV !== 'test') {
+    console.log("Notice: MONGO_URI is not set. Running with built-in in-memory demo store.");
+    app.use(memoryRouter);
+} else {
+    app.use('/tasks', tasksRouter);
+    app.use('/users', usersRouter);
+}
 
 if (process.env.NODE_ENV !== 'test') {
     app.listen(port, () => {

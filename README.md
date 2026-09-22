@@ -7,8 +7,9 @@
 [![PACT Verified](https://img.shields.io/badge/PACT-Contract_Tested-00A871?style=for-the-badge&logo=pact&logoColor=white)](https://pact.io/)
 [![Jenkins CI/CD](https://img.shields.io/badge/Jenkins-Pipeline-D24939?style=for-the-badge&logo=jenkins&logoColor=white)](https://www.jenkins.io/)
 [![GitLab CI](https://img.shields.io/badge/GitLab_CI-Pipeline-FC6D26?style=for-the-badge&logo=gitlab&logoColor=white)](https://docs.gitlab.com/ee/ci/)
+[![Android APK](https://img.shields.io/badge/APK_Release-v1.0.0-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/Ashutosh-Yadav-256/MERN-task-manager/releases/tag/v1.0.0)
 
-An enterprise-grade, multi-client task management platform demonstrating clean architecture across web, mobile, and backend micro-architectures. Features a **Node.js/Express REST API**, a **React 18** web dashboard, an **Angular 17+ standalone enterprise client**, a **React Native (Expo)** cross-platform mobile application, **Jest** unit/integration suites, **PACT** consumer-driven contract testing, and dual **Jenkins** / **GitLab CI** deployment pipelines.
+An enterprise-grade, multi-client task management platform demonstrating clean architecture across web, mobile, and backend micro-architectures. Features a **Node.js/Express REST API**, a **React 18** web dashboard, an **Angular 17+ standalone enterprise client**, a **React Native (Expo)** cross-platform mobile application, **Jest** unit/integration suites, **PACT** consumer-driven contract testing, and dual **Jenkins** / **GitLab CI** deployment pipelines. Direct APK download available on [GitHub Releases](https://github.com/Ashutosh-Yadav-256/MERN-task-manager/releases/tag/v1.0.0).
 
 ---
 
@@ -49,6 +50,31 @@ graph TD
     GL --> Backend
     API --> DB
 ```
+
+---
+
+## Application Demo & Visual Showcase
+
+### 1. Interactive Kanban Dashboard (Light & Dark Theme)
+TaskFlow features a responsive three-column workflow board (`To-Do`, `In Progress`, `Done`) with priority badges (`High` red, `Medium` amber, `Low` green), due dates, and seamless theme switching.
+
+| Light Mode Dashboard | Dark Mode Dashboard |
+| :---: | :---: |
+| ![TaskFlow Light Dashboard](./screenshots/02_taskflow_kanban_dashboard.png) | ![TaskFlow Dark Dashboard](./screenshots/04_taskflow_dark_mode.png) |
+
+### 2. Task Management & Modal Workflow
+Create and edit tasks with real-time status updates, priority tags, and deadline tracking through an accessible modal dialog.
+
+| Task Creation & Edit Modal | Secure Authentication & Sign In |
+| :---: | :---: |
+| ![Task Creation Modal](./screenshots/03_taskflow_task_modal.png) | ![TaskFlow Login Screen](./screenshots/01_taskflow_login.png) |
+
+### 3. Cross-Platform Mobile Experience
+The platform provides a responsive mobile interface alongside native iOS & Android applications. Download the compiled standalone Android APK directly from [GitHub Releases](https://github.com/Ashutosh-Yadav-256/MERN-task-manager/releases/tag/v1.0.0).
+
+<p align="center">
+  <img src="./screenshots/05_taskflow_mobile_view.png" alt="TaskFlow Mobile View" width="360" />
+</p>
 
 ---
 
