@@ -205,7 +205,7 @@ export class RegisterComponent {
 
     this.authService.register({ username: this.username.trim(), password: this.password }).subscribe({
       next: () => {
-        // Automatically login after successful registration
+
         this.authService.login({ username: this.username.trim(), password: this.password }).subscribe({
           next: () => {
             this.loading = false;

@@ -15,8 +15,7 @@ export const AuthProvider = ({ children }) => {
             if (storedToken) {
                 setToken(storedToken);
                 axios.defaults.headers.common['x-auth-token'] = storedToken;
-                // You would normally verify the token with the backend here
-                // For simplicity, we'll assume the token is valid if it exists
+
                 setIsLoggedIn(true);
             }
             setIsLoading(false);
@@ -41,7 +40,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     if (isLoading) {
-        return <div>Loading...</div>; // Or a spinner component
+        return <div>Loading...</div>;
     }
 
     return (

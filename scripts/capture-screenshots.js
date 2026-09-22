@@ -75,7 +75,6 @@ async function capture() {
     mobile: false
   });
 
-  // --- SCREENSHOT 1: Login Page ---
   console.log('3. Navigating to Login Page...');
   await sendCDP(ws, 'Page.navigate', { url: 'http://localhost:3001/login' });
   await delay(2500);
@@ -86,7 +85,6 @@ async function capture() {
   fs.writeFileSync(loginPath, Buffer.from(loginShot.data, 'base64'));
   console.log('Saved:', loginPath);
 
-  // --- SCREENSHOT 2: Dashboard Kanban Board ---
   console.log('4. Injecting auth token and navigating to Dashboard...');
   await sendCDP(ws, 'Runtime.evaluate', {
     expression: `
@@ -102,12 +100,11 @@ async function capture() {
   fs.writeFileSync(dashPath, Buffer.from(dashShot.data, 'base64'));
   console.log('Saved:', dashPath);
 
-  // --- SCREENSHOT 3: Add/Edit Task Modal ---
   console.log('5. Clicking FAB to open Task Modal...');
   await sendCDP(ws, 'Runtime.evaluate', {
     expression: `
-      const fab = document.querySelector('button[aria-label="Add New Task"]') || 
-                  document.querySelector('.MuiFab-root') || 
+      const fab = document.querySelector('button[aria-label="Add New Task"]') ||
+                  document.querySelector('.MuiFab-root') ||
                   document.querySelector('button');
       if (fab) fab.click();
     `
@@ -120,12 +117,10 @@ async function capture() {
   fs.writeFileSync(modalPath, Buffer.from(modalShot.data, 'base64'));
   console.log('Saved:', modalPath);
 
-  // Close modal with Escape key
   await sendCDP(ws, 'Input.dispatchKeyEvent', { type: 'keyDown', key: 'Escape', code: 'Escape' });
   await sendCDP(ws, 'Input.dispatchKeyEvent', { type: 'keyUp', key: 'Escape', code: 'Escape' });
   await delay(1000);
 
-  // --- SCREENSHOT 4: Dark Mode ---
   console.log('6. Switching to Dark Theme...');
   await sendCDP(ws, 'Runtime.evaluate', {
     expression: `
@@ -141,7 +136,6 @@ async function capture() {
   fs.writeFileSync(darkPath, Buffer.from(darkShot.data, 'base64'));
   console.log('Saved:', darkPath);
 
-  // --- SCREENSHOT 5: Mobile Viewport ---
   console.log('7. Switching to Mobile Viewport (390x844)...');
   await sendCDP(ws, 'Emulation.setDeviceMetricsOverride', {
     width: 390,

@@ -37,23 +37,23 @@ const DashboardPage = () => {
 
         const task = tasks.find(t => t._id === draggableId);
         const newStatus = destination.droppableId;
-        
-        const updatedTasks = tasks.map(t => 
+
+        const updatedTasks = tasks.map(t =>
             t._id === draggableId ? { ...t, status: newStatus } : t
         );
         setTasks(updatedTasks);
 
         try {
-            await axios.put(`http://localhost:5000/tasks/update/${draggableId}`, 
+            await axios.put(`http://localhost:5000/tasks/update/${draggableId}`,
                 { ...task, status: newStatus },
                 { headers: { 'x-auth-token': token } }
             );
         } catch (err) {
             console.error('Failed to update task status:', err);
-            setTasks(tasks); 
+            setTasks(tasks);
         }
     };
-    
+
     const openModalForNew = () => { setEditingTask(null); setIsModalOpen(true); };
     const openModalForEdit = (task) => { setEditingTask(task); setIsModalOpen(true); };
     const closeModal = () => { setIsModalOpen(false); setEditingTask(null); };

@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import TaskCard from '../components/TaskCard';
 
-// Mock react-beautiful-dnd for isolated component testing
 jest.mock('react-beautiful-dnd', () => ({
   Draggable: ({ children }) =>
     children(

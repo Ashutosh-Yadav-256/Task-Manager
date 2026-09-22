@@ -81,7 +81,6 @@ function inMemoryAuth(req, res, next) {
 
 const memoryRouter = express.Router();
 
-// User routes
 memoryRouter.post('/users/register', (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
@@ -101,7 +100,6 @@ memoryRouter.post('/users/login', (req, res) => {
   });
 });
 
-// Tasks routes
 memoryRouter.get('/tasks', inMemoryAuth, (req, res) => {
   res.json(demoTasks);
 });

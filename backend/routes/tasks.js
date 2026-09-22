@@ -2,13 +2,11 @@ const router = require('express').Router();
 const auth = require('../middleware/auth');
 let Task = require('../models/task.model');
 
-// --- Get all tasks for a user ---
 router.get('/', auth, async (req, res) => {
     const tasks = await Task.find({ user: req.user });
     res.json(tasks);
 });
 
-// --- Create a new task ---
 router.post('/add', auth, async (req, res) => {
     try {
         const { title, description, status, priority, dueDate } = req.body;
@@ -28,14 +26,13 @@ router.post('/add', auth, async (req, res) => {
     }
 });
 
-// --- Update a task ---
 router.put('/update/:id', auth, async (req, res) => {
     try {
         const task = await Task.findOne({ _id: req.params.id, user: req.user });
         if (!task) {
             return res.status(404).json({ msg: "Task not found." });
         }
-        
+
         const { title, description, status, priority, dueDate } = req.body;
         const updatedTask = await Task.findByIdAndUpdate(req.params.id, {
             title, description, status, priority, dueDate
@@ -47,7 +44,6 @@ router.put('/update/:id', auth, async (req, res) => {
     }
 });
 
-// --- Delete a task ---
 router.delete('/:id', auth, async (req, res) => {
     try {
         const task = await Task.findOne({ _id: req.params.id, user: req.user });

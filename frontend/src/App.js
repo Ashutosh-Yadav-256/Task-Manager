@@ -20,7 +20,6 @@ function App() {
   );
 }
 
-// Separate component to access AuthContext
 function MainApp() {
   const { isLoggedIn } = useContext(AuthContext);
 
@@ -30,13 +29,13 @@ function MainApp() {
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route 
+        <Route
           path="/"
           element={
             <PrivateRoute>
               <DashboardPage />
             </PrivateRoute>
-          } 
+          }
         />
       </Routes>
     </>

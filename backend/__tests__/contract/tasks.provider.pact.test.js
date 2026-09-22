@@ -8,7 +8,7 @@ describe('PACT Provider Verification: Task Manager Backend', () => {
   const PORT = 8089;
 
   beforeAll((done) => {
-    // Start verification target server implementing the contract endpoints
+
     const app = express();
     app.use(express.json());
 

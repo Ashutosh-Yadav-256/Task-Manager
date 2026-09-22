@@ -16,7 +16,7 @@ const Navbar = () => {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     Task Manager
                 </Typography>
-                
+
                 <Box>
                     <IconButton sx={{ ml: 1 }} onClick={toggleTheme} color="inherit" aria-label="toggle theme">
                         {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}

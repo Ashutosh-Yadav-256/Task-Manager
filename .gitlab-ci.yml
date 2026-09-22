@@ -18,9 +18,6 @@ cache:
     - angular-client/node_modules/
     - mobile/node_modules/
 
-# -------------------------------------------------------------
-# Stage 1: Install Dependencies
-# -------------------------------------------------------------
 install:dependencies:
   stage: install
   script:
@@ -29,9 +26,6 @@ install:dependencies:
     - cd angular-client && npm install && cd ..
     - cd mobile && npm install && cd ..
 
-# -------------------------------------------------------------
-# Stage 2: Automated Testing (Jest)
-# -------------------------------------------------------------
 test:backend-jest:
   stage: test
   script:
@@ -44,9 +38,6 @@ test:frontend-jest:
     - cd frontend
     - npm test -- --watchAll=false
 
-# -------------------------------------------------------------
-# Stage 3: Consumer-Driven Contract Testing (PACT)
-# -------------------------------------------------------------
 test:contract-pact:
   stage: contract-test
   script:
@@ -59,9 +50,6 @@ test:contract-pact:
       - backend/pacts/
     expire_in: 30 days
 
-# -------------------------------------------------------------
-# Stage 4: Production Builds
-# -------------------------------------------------------------
 build:react-frontend:
   stage: build
   script:
