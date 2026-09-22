@@ -1,0 +1,83 @@
+image: node:20-alpine
+
+stages:
+  - install
+  - test
+  - contract-test
+  - build
+
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+
+cache:
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - .npm/
+    - backend/node_modules/
+    - frontend/node_modules/
+    - angular-client/node_modules/
+    - mobile/node_modules/
+
+# -------------------------------------------------------------
+# Stage 1: Install Dependencies
+# -------------------------------------------------------------
+install:dependencies:
+  stage: install
+  script:
+    - cd backend && npm install && cd ..
+    - cd frontend && npm install && cd ..
+    - cd angular-client && npm install && cd ..
+    - cd mobile && npm install && cd ..
+
+# -------------------------------------------------------------
+# Stage 2: Automated Testing (Jest)
+# -------------------------------------------------------------
+test:backend-jest:
+  stage: test
+  script:
+    - cd backend
+    - npm test
+
+test:frontend-jest:
+  stage: test
+  script:
+    - cd frontend
+    - npm test -- --watchAll=false
+
+# -------------------------------------------------------------
+# Stage 3: Consumer-Driven Contract Testing (PACT)
+# -------------------------------------------------------------
+test:contract-pact:
+  stage: contract-test
+  script:
+    - cd backend
+    - npm run test:contract
+  artifacts:
+    name: "pact-contracts-$CI_COMMIT_SHA"
+    when: always
+    paths:
+      - backend/pacts/
+    expire_in: 30 days
+
+# -------------------------------------------------------------
+# Stage 4: Production Builds
+# -------------------------------------------------------------
+build:react-frontend:
+  stage: build
+  script:
+    - cd frontend
+    - npm run build
+  artifacts:
+    paths:
+      - frontend/build/
+    expire_in: 7 days
+
+build:angular-client:
+  stage: build
+  script:
+    - cd angular-client
+    - npm run build
+  artifacts:
+    paths:
+      - angular-client/dist/
+    expire_in: 7 days
